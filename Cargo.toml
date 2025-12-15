@@ -1,7 +1,14 @@
 [package]
 name = "serde_www_form_urlencoded"
+description = "A serde crate for www-form-urlencoded data"
 version = "0.1.0"
 edition = "2024"
+authors = ["Gaël PABOIS"]
+documentation = "https://docs.rs/serde_www_form_urlencoded"
+readme = "README.md"
+repository = "https://github.com/gpabois/serde_www_form_urlencoded"
+license = "MIT"
+keywords = ["serde", "www-form-urlencoded"]
 
 [dependencies]
 serde = { version = "1.0.228", features = ["derive"]}
