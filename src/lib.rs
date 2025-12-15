@@ -1,57 +1,57 @@
-/// # Serde www-form-urlencoded
-/// 
-/// This crate implements *ser*ialization and *de*serialization of www-form-urlencoded data.
-/// 
-/// # Format
-/// Map or struct data are flat-encoded. 
-/// 
-/// Exemple
-/// ```
-/// use serde::{Serialize};
-/// 
-/// #[derive(Serialize)]
-/// struct Foo<'a> {
-///   foo0: Bar<'a>,
-///   foo1: u8
-/// }
-/// 
-/// #[derive(Serialize)]  
-/// struct Bar<'a> {
-///   bar0: bool,
-///   bar1: &'a str
-/// }
-/// 
-/// const ITEM: Foo<'static> = Foo {
-///   foo0: Bar {
-///     bar0: true,
-///     bar1: "test"
-///   },
-///   foo1: 2
-/// };
-/// 
-/// assert_eq!(
-///     &serde_www_form_urlencoded::to_string(&ITEM).unwrap(),
-///     "foo0.bar0=true&foo0.bar1=\"test\"&foo1=2"
-/// );
-/// ```
-/// 
-/// Sequence are flat-encoded with a $length attribute to keep record of the number of items.
-/// 
-/// ```
-/// use serde::{Serialize};
-/// 
-/// #[derive(Serialize)]
-/// struct Foo<'a> {
-///   foo0: &'a[u8]
-/// }
-/// 
-/// const ITEM: Foo<'static> = Foo {foo0: &[0,1,2,3,4]};
-/// 
-/// assert_eq!(
-///     &serde_www_form_urlencoded::to_string(&ITEM).unwrap(),
-///     "foo0.0=0&foo0.1=1&foo0.2=2&foo0.3=3&foo0.4=4&foo0.$length=5"
-/// );
-/// ```
+//! # Serde www-form-urlencoded
+//!
+//! This crate implements *ser*ialization and *de*serialization of www-form-urlencoded data.
+//! 
+//! # Format
+//! Map or struct data are flat-encoded. 
+//! 
+//! Exemple
+//! ```
+//! use serde::{Serialize};
+//! 
+//! #[derive(Serialize)]
+//! struct Foo<'a> {
+//!   foo0: Bar<'a>,
+//!   foo1: u8
+//! }
+//! 
+//! #[derive(Serialize)]  
+//! struct Bar<'a> {
+//!   bar0: bool,
+//!   bar1: &'a str
+//! }
+//! 
+//! const ITEM: Foo<'static> = Foo {
+//!   foo0: Bar {
+//!     bar0: true,
+//!     bar1: "test"
+//!   },
+//!   foo1: 2
+//! };
+//! 
+//! assert_eq!(
+//!     &serde_www_form_urlencoded::to_string(&ITEM).unwrap(),
+//!     "foo0.bar0=true&foo0.bar1=\"test\"&foo1=2"
+//! );
+//! ```
+//! 
+//! Sequence are flat-encoded with a $length attribute to keep record of the number of items.
+//! 
+//! ```
+//! use serde::{Serialize};
+//! 
+//! #[derive(Serialize)]
+//! struct Foo<'a> {
+//!   foo0: &'a[u8]
+//! }
+//! 
+//! const ITEM: Foo<'static> = Foo {foo0: &[0,1,2,3,4]};
+//! 
+//! assert_eq!(
+//!     &serde_www_form_urlencoded::to_string(&ITEM).unwrap(),
+//!     "foo0.0=0&foo0.1=1&foo0.2=2&foo0.3=3&foo0.4=4&foo0.$length=5"
+//! );
+//! ```
 
 mod error;
 mod parser;
